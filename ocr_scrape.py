@@ -9,9 +9,10 @@ from selenium.common.exceptions import NoSuchElementException
 driver = webdriver.Chrome("./chromedriver")
 
 find = driver.find_element_by_xpath
-name_in = "/html/body/form/div[2]/div[1]/div[1]/div[1]/fieldset[1]/table/tbody/tr[2]/td[1]/input"
-zip_in = "/html/body/form/div[2]/div[1]/div[1]/div[1]/fieldset[1]/table/tbody/tr[3]/td[3]/input"
+name_in = "/html/body/form/div[4]/div/div[1]/div/div[1]/div[1]/ul/li[1]/input" # "/html/body/form/div[2]/div[1]/div[1]/div[1]/fieldset[1]/table/tbody/tr[2]/td[1]/input"
+zip_in = "/html/body/form/div[4]/div/div[1]/div/div[1]/div[1]/ul/li[4]/input" # "/html/body/form/div[2]/div[1]/div[1]/div[1]/fieldset[1]/table/tbody/tr[3]/td[3]/input"
 search_btn = "/html/body/form/div[2]/div[1]/div[1]/div[1]/fieldset[1]/table/tbody/tr[4]/td[2]/button"
+search_btn_2 = "
 results = "/html/body/form/div[2]/div[1]/div[1]/div[1]/fieldset[2]/table[2]/tbody/tr[1]"
 export_btn = "/html/body/form/div[2]/div[1]/div[1]/div[1]/fieldset[2]/table[1]/tbody/tr[1]/td[2]/button"
 error_msg = "/html/body/div[1]/div[2]/div"
@@ -20,7 +21,8 @@ close_btn = "/html/body/div[1]/div[2]/center/input"
 search = SearchEngine(simple_zipcode=True)
 
 for zc in search.by_state("florida", returns=-1):
-    driver.get("https://ocrdata.ed.gov/DistrictSchoolSearch#schoolSearch")
+    # driver.get("https://ocrdata.ed.gov/DistrictSchoolSearch#schoolSearch")
+    driver.get("https://ocrdata.ed.gov/flex/Reports.aspx?type=school")
     find(name_in).send_keys("\b\b\b\bhigh")
     find(zip_in).send_keys(f"\b\b\b\b\b{zc.zipcode}")
     find(search_btn).click()
