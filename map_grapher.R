@@ -1,4 +1,5 @@
 library(maptools)
+library(rgdal)
 
 plot.heat <- function(counties.map,state.map,z,title=NULL,breaks=NULL,reverse=FALSE,cex.legend=1,bw=.2,col.vec=NULL,plot.legend=TRUE) {
   ##Break down the value variable
@@ -29,8 +30,8 @@ plot.heat <- function(counties.map,state.map,z,title=NULL,breaks=NULL,reverse=FA
 }
 
 ##substitute your shapefiles here
-state.map <- readShapeSpatial("maps/st24_d00.shp")
-zip.map <- readShapeSpatial("maps/zt24_d00.shp")
+state.map <- readOGR("~/Documents/GitHub/edudata/map/tl_2019_us_state/tl_2019_us_state.shp")
+zip.map <- readOGR("~/Documents/GitHub/edudata/map/tl_2019_us_zcta510/tl_2019_us_zcta510.shp")
 ## this is the variable we will be plotting
 zip.map@data$noise <- rnorm(nrow(zip.map@data))
 ## put the lab point x y locations of the zip codes in the data frame for easy retrieval
